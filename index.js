@@ -75,6 +75,7 @@ app.get('/', async (request, response) => {
     response.send( await readFile('./home.html', 'utf8') );
 });
 
-
+// Serve static files from the 'public' directory
+app.use(express.static('public'));
 
 app.listen(process.env.PORT || 3000, () => console.log(`App available on http://localhost:3000`))

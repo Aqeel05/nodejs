@@ -10,13 +10,69 @@
             font-family: Courier, monospace;
             text-align: center;
         }
+
+        .carousel {
+            position: relative;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .carousel img {
+            display: none;
+            width: 100%;
+            height: auto;
+        }
+
+        .carousel img.active {
+            display: block;
+        }
+
+        .arrow {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 30px;
+            background-color: lightgray;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+        }
+
+        .left {
+            left: 10px;
+            transform: translateY(-50%);
+        }
+
+        .right {
+            right: 10px;
+            transform: translateY(-50%);
+        }
     </style>        
 </head>
 <body>
     <h1>
-        I am a senior software engineer now!
+        Happy Hannah's Cafe
     </h1>
 
-    <iframe src="https://giphy.com/embed/fPRwBcYd71Lox1v7p2" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+    <div class="carousel">
+        <span class="arrow left" onclick="changeImage(-1)">&#10094;</span>
+        <img src='pictures/hannahmenupg1.jpg' class="active">
+        <img src='pictures/hannahmenupg2.jpg'>
+        <img src='pictures/hannahmenupg3.jpg'>
+        <span class="arrow right" onclick="changeImage(1)">&#10095;</span>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel img');
+
+        function changeImage(direction) {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + direction + images.length) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+    </script>
 </body>
 </html>
